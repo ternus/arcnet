@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+{% block heading %}Make Media Feed Post{% endblock %}
+
+{% block head_content %}{{ form.media }}{% endblock %}
+
+{% block title %}Make Media Feed Post{% endblock %}
+
+{% block content %}
+
+<font size="2">
+<form enctype="multipart/form-data" action="/media/post/image" method="POST">
+<table>
+{{ form.as_table }}
+</table>
+</font>
+
+<b>Make sure this is all correct before you hit</b> <input type="submit" value="Post!" />
+</form>
+
+{% endblock %}

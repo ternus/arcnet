@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+
+{% block title %}Unpack a Package{% endblock %}
+
+{% block heading %}Unpack a Package{% endblock %}
+
+{% block content %}
+
+<form action="/net/unpack/" method="POST">
+{{ form.as_table }}
+<input type="submit" value="Unpack!" />
+</form>
+
+{% endblock %}

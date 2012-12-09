@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% block title %}Remote Login{% endblock %}
+
+{% block heading %}Remote Login: {{ c.address }}{% endblock %}
+
+{% block content %}
+
+<div class="ice">
+<div class="icelayer" id="ice-level-{{ ice.get_level }}">{{ ice.get_level }}-level {{ ice.get_real_type }}</div>
+
+<div class="ice-element">
+<div class="ice-help"><i>This is a {{ ice.get_real_type }} task.  {{ ice.get_help }}</i></div>
+
+<div class="conttext">{{ ice.render|safe }}</div>
+
+<div class="conttext">Once you have completed this task,
+click <a href="/net/{{ c.address }}/ice/{{ ice.seed }}/{{ nextlayer }}?complete=1">here</a>.</div>
+
+{% ifequal ice.level 8 %}
+<div class="intro">Diamond-level ICE cannot be brute-forced.</div>
+{% else %}
+<div class="conttext">You may also choose to <b>brute-force</b> this
+task by paying {{ ice.cost }} computrons.  This eliminates the need to
+complete the task.  To do so, click <a href="/net/{{ c.address }}/ice/{{ ice.seed }}/{{ nextlayer }}?force=1">here</a>.</div>
+{% endifequal %}
+
+<span class="iceid">ICE ID: {{ ice.ice_type }}-{{ ice.seed }}</span>
+</div>
+</div>
+
+{% endblock %}

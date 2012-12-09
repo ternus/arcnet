@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+
+{% block title %}Opinion{% endblock %}
+
+{% block heading %}The Court of Public Opinion{% endblock %}
+
+{% block content %}
+
+
+<div class="nav-header">
+<a href="/opinion/">Home</a> | <a href="/opinion/agents/">My Agents</a> | <a href="/opinion/endorse/">Endorse Subject</a> | <a href="/opinion/candidate/">Endorse Candidate</a>
+</div>
+
+<div class="intro">This is the zeitgeist of Arcadia: what people are
+thinking and feeling.</div>
+
+<div class="cencontainer">
+<div class="contheading">Society</div>
+{% for subject in socsubjects %}
+<div class="pssubject"><div class="pssubject-name"><a href="/opinion/{{subject.name}}">{{ subject.name }}</a></div> 
+<div class="pssubject-explan"><span class="pssubject-pro"><b>Pro:</b> {{ subject.pro }}</span><br/> <b>Con:</b> {{ subject.anti }}</div>
+<div class="pssubject-support"><b>Overall Opinion:</b> {{ subject.support }} ({{ subject.supporttext }})</div>
+<div class="progressBar"><span><em style="left:{{ subject.pbar }}px">{{subject.support}}</em></span></div>
+</div>
+{% endfor %}
+</div>
+
+<div class="cencontainer">
+<div class="contheading">Groups</div>
+{% for subject in ensubjects %}
+<div class="pssubject"><div class="pssubject-name"><a href="/opinion/{{subject.name}}">{{ subject.name }}</a></div> 
+<div class="pssubject-support"><b>Overall Opinion:</b> {{ subject.support }} ({{ subject.supporttext }})</div>
+<div class="progressBar"><span><em style="left:{{ subject.pbar }}px">{{subject.support}}</em></span></div>
+</div>
+{% endfor %}
+</div>
+
+<div class="cencontainer">
+<div class="contheading">Colonies</div>
+{% for subject in osubjects %}
+<div class="pssubject"><div class="pssubject-name"><a href="/opinion/{{subject.name}}">{{ subject.name }}</a></div> 
+<div class="pssubject-support"><b>Overall Opinion:</b> {{ subject.support }} ({{ subject.supporttext }})</div>
+<div class="progressBar"><span><em style="left:{{ subject.pbar }}px">{{subject.support}}</em></span></div>
+</div>
+{% endfor %}
+</div>
+
+
+
+{% endblock %}

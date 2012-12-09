@@ -1,0 +1,48 @@
+{% extends "index.html" %}
+
+{% block title %}Server Access{% endblock %}
+
+{% block heading %}Server Access{% endblock %}
+
+{% block content %}
+
+<div class="nav-header"><a href="/net/">Network Home</a></div>
+
+<div class="largecontainer">
+<div class="contheading">Server: {{ c.name }}</div>
+
+<div align="center"><h3>ICE:</h3></div>
+<div class="ice">
+{% for i in c.ice.all %}
+<div class="icelayer_broken" id="ice-level-{{ i.get_level }}">{{ i.get_level }}-level {{ i.get_real_type }}</div>
+{% endfor %}
+</div>
+
+<div align="center"><h3>File Contents</h3></div>
+<div class="comptext">{% if c.description %}{{ c.description|safe|linebreaks }}{% else %}None... how strange!{% endif %}</div>
+
+<div align="center">
+<h3>Execute Action:</h3>
+<div class="intro">If you wish to interact with this computer, enter your action here and click Execute.</div>
+<form action="/net/{{ c.address }}/server" method='POST'>
+<textarea id="id_effects" rows="10" cols="40" name="what" class="vLargeTextField"></textarea><br />
+<input type="submit" value="Execute" />
+</form>
+</div>
+
+
+<div align="center">
+<h3>Linked Servers:</h3>
+<table>
+  {% for co in c.linksto %}
+  <tr><td><a href="/net/{{ co.address }}">{{ co.address}}</a></td></tr>
+  {% endfor %}
+</table>
+</div>
+
+<div class="dothis"></div>
+
+</div>
+
+
+{% endblock %}

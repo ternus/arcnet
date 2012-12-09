@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+
+{% block title %}Remote Login{% endblock %}
+
+{% block heading %}Remote Login: {{ c.address }}{% endblock %}
+
+{% block content %}
+
+
+<div class="largecontainer">
+<div class="contheading">Server Access</div> 
+
+<div class="conttext">This is computer {{ c.address }}.  You do not have a login here.  This computer has {{ c.slevel }}-level security.</div>
+
+{% if c in user.computers.all %}
+You may begin at the outermost layer of ICE:<br />
+
+<div class="ice">
+<div id="ice-level-{{ ice.get_level }}"><a href="/net/{{ c.address }}/ice/{{ ice.seed }}/{{ level }}">{{ ice.get_level }} {{ ice.get_type }}</a></div>
+</div>
+</div>
+{% else %}
+Starting the hack will cost you {{ c.security_level }} computrons.
+
+{% if canthack %}
+... but you don't have enough computrons for that.
+{% else %}
+<a href="/net/{{ c.address }}/?start=1">Start the Hack</a>
+{% endif %}
+
+
+{% endif %}
+</div>
+
+{% endblock %}

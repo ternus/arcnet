@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+
+{% block heading %}ARCNET Home{% endblock %}
+
+{% block title %}Event Feed{% endblock %}
+
+{% block content %}
+
+<div class="intro">Welcome, {{ user.charname }}.  Here's your personal event feed.</div>
+
+<div class="largecontainer">
+
+  {% for event in events %}
+  <div class="cencontainer">
+    {{ event.time|timesince }} ago: 
+    <b>You</b> {{ event.tochar|safe }}
+
+  </div>
+  {% endfor %}
+
+</div>
+
+{% endblock %}

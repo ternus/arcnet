@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+{% block heading %}My Files{% endblock %}
+
+{% block title %}My Files{% endblock %}
+
+{% block content %}
+
+<div class="intro">The digital moss on your rolling stone.</div>
+
+<div class="largecontainer">
+<div class="contheading">Files</div>
+<table class="sortable" width=100%>
+<thead><tr><td>Name</td><td>Type</td></tr></thead>
+{% for f in files %}
+<tr><td><a href="/files/{{ f.id }}">{{ f }}</td><td>{{ f.get_type }}</td></tr>
+{% endfor %}
+</table>
+</div>
+
+{% endblock %}

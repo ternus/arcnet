@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+
+{% block heading %}Computron Management{% endblock %}
+
+{% block head_content %}{% endblock %}
+
+{% block title %}Computron Management{% endblock %}
+
+{% block content %}
+
+<div class="cencontainer">
+<div class="contheading">Computrons</div>
+
+<div class="conttext">You currently have <b><span class="ltext">{{ user.computrons }}</span></b> computrons.</div>
+
+<div class="conttext">Your current computron income is <b><span class="ltext">{{ user.computron_income }}</span></b> per day.</div>
+
+<div class="conttext">
+If you have a mechanic that allows you to add additional computrons, you may do so here.
+<form action="/net/computrons/" method="GET">
+Amount: <input type="text" name="add" value="0"/><br />
+Reason: <input type="text" name="why" value=""/><br />
+<input type="submit" value="Add Computrons" />
+</form>
+</div>
+
+<div class="conttext">
+
+If you'd like to transfer computrons to another user, enter their username here. (<i>To allow you to transfer computrons to hidden NPCs, this box is deliberately not a drop-down.</i>)
+<form enctype="multipart/form-data" action="/net/computrons/" method="POST">
+<table>
+{{ form.as_table }}
+</table>
+<b>Make sure this is all correct before you hit</b> <input type="submit" value="Transfer!" />
+</form>
+</div>
+</div>
+
+{% endblock %}

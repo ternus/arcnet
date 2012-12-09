@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block title %}Fame{% endblock %}
+
+{% block heading %}Cultural Ambassador Candidate Rankings{% endblock %}
+
+{% block content %}
+
+<div class="intro">The movers and shakers of Arcadia, competing for
+the office of Cultural Ambassador.</div>
+
+<div class="cencontainer" id="famelist">
+<ol>
+{% for person in people %}
+<li> {% if person.tied %}(tied){% endif %}{{ person.chardiv|safe }}</li>
+{% endfor %}
+</ol>
+</div>
+
+{% endblock %}

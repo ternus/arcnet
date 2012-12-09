@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+{% block title %}Arkipedia: Glossary{% endblock %}
+
+{% block heading %}Arkipedia{% endblock %}
+
+{% block content %}
+
+<ul>
+{% for entry in entries %}
+<li><a href="/arkipedia/{{ entry.name }}">{{ entry.name }}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}

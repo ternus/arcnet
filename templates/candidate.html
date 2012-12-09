@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+
+{% block heading %}Public Opinion{% endblock %}
+
+{% block head_content %}{% endblock %}
+
+{% block title %}State Your Opinion{% endblock %}
+
+{% block content %}
+
+<div class="nav-header">
+<a href="/opinion/">Home</a> | <a href="/opinion/agents/">My Agents</a> | <a href="/opinion/endorse/">Endorse Subject</a> | <a href="/opinion/candidate/">Endorse Candidate</a>
+</div>
+
+<div class="cencontainer">
+<div class="contheading">Endorse Candidate</div>
+<form enctype="multipart/form-data" action="/opinion/candidate/" method="POST">
+<table>
+{{ form.as_table }}
+</table>
+
+<b>Make sure this is all correct before you hit</b> <input type="submit" value="Endorse!" />
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+
+{% block title %}My Programs{% endblock %}
+
+{% block heading %}My Programs{% endblock %}
+
+{% block content %}
+
+{% if user.integrations_left %}
+<a href="/net/integrate/">Integrate Another</a>
+{% endif %}
+
+<div id="programs">
+  <table class="sortable" width="100%">
+    <thead>
+      <tr><td><b>Binary</b></td><td><b>Name</b></td><td><b>Level</b></td><td><b>Description</b></td></tr>
+    </thead>
+{% for p in programs %}
+<tr id="program"><td><span class="binary">{{ p.bname }}</span></td><td><span class="progname">{{ p.name }}</span></td><td>{{ p.level }}</td><td><span class="progdesc">{{ p.desc }}</span></td></tr>
+{% endfor %}
+  </table>
+</div>
+
+
+{% endblock %}

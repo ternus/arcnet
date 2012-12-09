@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block heading %}Make Media Feed Post{% endblock %}
+
+{% block head_content %}{{ form.media }}{% endblock %}
+
+{% block title %}Make Media Feed Post{% endblock %}
+
+{% block content %}
+
+SUBMIT CONTENT TO RADIO FREE ARCADIA
+
+<form enctype="multipart/form-data" action="/gm/audiopost" method="POST">
+<table>
+{{ form.as_table }}
+</table>
+<input type="submit" value="Send" />
+</form>
+
+{% endblock %}

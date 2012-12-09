@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+{% block heading %}ARCNET Home{% endblock %}
+
+{% block title %}Media Feed{% endblock %}
+
+{% block content %}
+
+<div class="intro">Welcome, {{ user.charname }}.  Here's what's happening.</div>
+
+<div class="largecontainer">
+
+  {% for event in events %}
+  <div class="cencontainer">
+    {{ event.time|timesince }} ago: <br/>
+    {% ifequal event.character.id request.user.id %}
+    <b>You</b> {{ event.tochar|safe }}
+    {% else %}
+    {% if event.character %}
+    {{ event.character.charspan|safe }} {{event.toall|safe }}
+    {% else %}
+    {{ event.toall|safe }}
+    {% endif %}
+    {% endifequal %}
+  </div>
+  {% endfor %}
+
+</div>
+
+{% endblock %}

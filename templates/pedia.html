@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+{% block title %}Arkipedia :: {{ e.name }}{% endblock %}
+
+{% block heading %}Arkipedia{% endblock %}
+
+{% block content %}
+
+<div class="largecontainer">
+<div class="contheading">{{ e.name }}</div>
+<div style="border-bottom:1px solid grey"><table width=100% align="center"><tr>
+<td align="center" width=40%>{% if e.previous %}<a href="/arkipedia/{{ e.previous }}">&larr; {{ e.previous }}</a>{% endif %}</td>
+<td align="center" width=20%><a href="/arkipedia/">&uArr;</a></td>
+<td align="center" width=40%>{% if e.next %}<a href="/arkipedia/{{ e.next }}">{{ e.next }} &rarr;</a>{% endif %}</td>
+</tr></table>
+</div>
+
+<br />
+{{ e.text }}
+</div>
+{% endblock %}

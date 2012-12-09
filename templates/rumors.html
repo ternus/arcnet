@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+
+{% block heading %}Computron Management{% endblock %}
+
+{% block head_content %}{% endblock %}
+
+{% block title %}Computron Management{% endblock %}
+
+{% block content %}
+
+<div class="intro">I heard something interesting...</div>
+
+<div class="cencontainer">
+<div class="contheading">The Rumor Mill</div>
+
+<div class="intro">NPCs are excited to tell you rumors for any reason at all.</div>
+
+<div class="conttext">You can get a rumor in one of two ways.</div>
+
+<div class="conttext">If and only if you have another mechanic that
+allows you to get free rumors,
+click <a href="/rumors/?type=free">here</a> to get a free rumor.</div>
+
+{% if user.computrons %}
+<div class="conttext">If you don't, you
+can <a href="/rumors/?type=pay">pay one computron</a> to get a
+rumor.</div>
+{% else %}
+<div class="conttext">You can also pay a computron for a rumor, but you don't have any.</div>
+{% endif %}
+
+{% if rumor %}
+<hr />
+<div class="conttext">You heard a rumor about {{ rumor.subject }}:</div>
+<div class="conttext"><i>{{ rumor.text }}</i></div>
+{% endif %}
+</div>
+
+{% endblock %}

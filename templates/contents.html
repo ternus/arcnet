@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+
+{% block title %}Unpack a Package{% endblock %}
+
+{% block heading %}Unpack a Package{% endblock %}
+
+{% block content %}
+
+This package contains:
+
+{{ p }} 
+
+{% if already_has %}
+You have already integrated this program!  <a href="/net/">Go back</a>.
+{% else %}
+<a href="/net/integrate/{{ p.bname }}/{{ p.magickey }}">Integrate!</a>
+{% endif %}
+
+{% endblock %}

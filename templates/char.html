@@ -1,0 +1,149 @@
+{% extends "index.html" %}
+
+{% load humanize %}
+
+{% block heading %}Profile Browser{% endblock %}
+
+{% block title %}Character Profile: {{char.charname}}{% endblock %}
+
+{% block content %}
+
+<div id="char_profile">
+  <div id="leftcontainer">
+
+
+    <div id="player_image">
+      {% if char.image %}
+      {% ifequal char.status "Deceased" %}
+      <div id="deceased" style="margin-top: 50px;" >DECEASED</div>
+      <div style="background: url({{ char.image.url }}); background-position:center;width: {{ char.iwidth }}px; height: {{ char.iheight }}px;">
+      &nbsp;</div>
+      {% else %}
+      <a href="{{ char.image.url }}"><img {{ char.imgstr|safe }} /></a>
+      {% endifequal %}
+      {% else %}
+      <img src="http://b5.mit.edu/img/unknown.gif" width=245 height=245 style="opacity:0.5;filter:alpha(opacity=50)"/>
+      {% endif %}
+    </div>
+
+    
+    <div id="player_info">
+      <div align=center style="font-weight:bold">Out Of Game Info</div>
+      <i>Character Type</i>: {{ char.type }}<br />
+      {% if char.isPC %}
+      <i>Player Name</i>: {{ char.playername }}<br />
+      <i>Player Email</i>:<span class="email"> {{ char.email }} </span><br />
+      <i>Player Phone</i>: {{ char.phone }}<br />
+      <i>Do Not Call</i>: {{ char.donotcall }}<br />
+      {% endif %}
+    </div>
+  </div>
+  <div id="rightcontainer">
+    <div id="char_name">{{ char.displayname }}</div>
+
+    <div id="public_info">
+    <b>Name</b>: {{ char.fullname }}<br />
+    <b>Gender</b>: {{ char.gender }}<br />
+    <b>Designation</b>: {{ char.race }}<br />
+    <b>Username</b>: <span class="email">{{ char.username }}</span> (<a href="/mail/send/?to={{char.username}}">Send A-Mail</a>)<br />
+    {% if 0 %}<b>Birth Date</b>: {{ char.dob }}<br />{% endif %}
+    <b>Sector of Residence</b>: {{ char.residence }}<br />
+    <b>Status</b>: {{ char.status }}<br />
+    <b>CA Endorsement</b>: {{ endorsement }}<br />
+    </div>
+    {% ifequal char.id user.id %}
+    <div id="private_info">
+      <div id="private_info_header" class="expander">Your Stats &mdash; <a onClick="shoh('private_info_contents');">View
+      <img src="http://b5.mit.edu/img/u.gif" name="imgprivate_info_contents" /></a></div>
+      <div id="private_info_contents" style="display:none;">
+	{% if user.press %}<b>Buzz</b>: {{ char.buzz }} (Ranking: {{ char.buzz_ranking|ordinal }})<br />{% endif %}
+	<b>Fame</b>: {{ char.fame }} {% if user.candidate %}(Ranking: {{ char.fame_ranking|ordinal }}){% endif %}<br />
+	<b>Computrons</b>: {{ char.computrons }} <br />
+	<b>Computron Income</b>: {{ char.computron_income }}/day <br />
+      </div>
+    </div>
+    {% endifequal %}
+    {% if user.is_superuser %}
+    <div id="private_info">
+      <div id="private_info_header" class="expander">Hi GM! Stats on This Character &mdash; <a onClick="shoh('private_info_contents');">View
+      <img src="http://b5.mit.edu/img/u.gif" name="imgprivate_info_contents" /></a></div>
+      <div id="private_info_contents" style="display:none;">
+	{% if user.press %}<b>Buzz</b>: {{ char.buzz }} (Ranking: {{ char.buzz_ranking|ordinal }})<br />{% endif %}
+	<b>Fame</b>: {{ char.fame }} {% if user.candidate %}(Ranking: {{ char.fame_ranking|ordinal }}){% endif %}<br />
+	<b>Computrons</b>: {{ char.computrons }} <br />
+	<b>Computron Income</b>: {{ char.computron_income }}/day <br />
+      </div>
+    </div>
+    {% endif %}
+
+    <div id="public_info">
+      <div class="subcontent-header">Declared Opinions:</div>
+      <div class="pspeople">
+	{% if positions %}
+	<table class="sortable" width=100%>
+	  <thead><tr><td>Subject</td><td>Stance</td></tr></thead>
+	  {% for position in positions %}
+	  <tr><td><a href="/opinion/{{ position.subject.name }}">{{position.subject.name}}</a></td><td>{{ position.tstate }}</td></tr>
+	  {% endfor %}
+	</table>
+	{% else %}
+	None yet!
+	{% endif %}
+      </div>
+    </div>
+    <div id="public_info">
+      <div class="subcontent-header">Published Research:</div>
+      <div class="pspeople">
+	{% if char.published %}
+	{% for r in char.published %}
+	<div><a href="/research/{{ r.startCode }}">{{ r.name }}</a></div>
+	{% endfor %}
+	{% else %}
+	None yet!
+	{% endif %}
+      </div>
+    </div>
+    <div id="public_info">
+      <div class="subcontent-header">Media Posts:</div>
+      <div class="pspeople">
+	{% if myposts %}
+	  {% for post in myposts %}
+	<div class="conttext"><a href="/media/{{ post.id }}">{{ post.subject }}</a> by {{ post.author.clink|safe}}</div>
+	  {% endfor %}
+	{% else %}
+	None yet!
+	{% endif %}
+      </div>
+    </div>
+    <div id="public_info">
+      <div class="subcontent-header">Posts About {{ char.charname}}:</div>
+      <div class="pspeople">
+	{% if theposts %}
+	  {% for post in theposts %}
+	<div class="conttext"><a href="/media/{{ post.id }}">{{ post.subject }}</a> by {{ post.author.clink|safe}}</div>
+	  {% endfor %}
+	{% else %}
+	None yet!
+	{% endif %}
+      </div>
+    </div>
+    {% if char.candidate %}
+    <div id="public_info">
+      <div class="subcontent-header">Agents Endorsing {{ char.charname}}:</div>
+      <div class="pspeople">
+	{% if endorsers %}
+	  {% for agent in endorsers.all %}
+	<div>{% if agent.direct %}{{ agent.controller.clink|safe }}{% else %}{{ agent.name }}{% endif %}</div>
+	  {% endfor %}
+	{% else %}
+	None yet!
+	{% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+
+  </div>
+</div>
+
+{% endblock %}

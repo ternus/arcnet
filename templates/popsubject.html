@@ -1,0 +1,68 @@
+{% extends "index.html" %}
+
+{% block title %}Opinion{% endblock %}
+
+{% block heading %}Opinion: {{ subject.name }}{% endblock %}
+
+{% block content %}
+
+<div class="nav-header">
+<a href="/opinion/">Home</a> | <a href="/opinion/agents/">My Agents</a> | <a href="/opinion/endorse/">Endorse Subject</a> | <a href="/opinion/candidate/">Endorse Candidate</a>
+</div>
+
+<div class="intro">This is the public's opinion on {{ subject.name }}. 
+From here, you can see the positions of Arcadia's movers and
+shakers, and can set or change your own support. You can also go <a href="/opinion/">back</a>.</div>
+
+
+<div class="cencontainer">
+
+  <div class="pssubject"><div class="pssubject-name">{{ subject.name }}</div> 
+    {% ifequal subject.type 's' %}
+    <div class="pssubject-explan"><span class="pssubject-pro"><b>Pro:</b> {{ subject.pro }}</span><br/> <b>Con:</b> {{ subject.anti }}</div>
+    {% endifequal %}
+    <div class="pssubject-support"><b>Overall Support:</b> {{ subject.support }} ({{ subject.supporttext }})</div>
+    <div class="progressBar"><span><em style="left:{{ subject.pbar }}px">{{subject.support}}</em></span></div>
+  </div>
+
+  
+  Here's what others think. <a href="/opinion/endorse/?subject={{ subject.name }}">[Endorse This Subject]</a>:
+
+  <div class="pspeople">
+    {% if positions %}
+    <table class="sortable" width=100%>
+      <thead><tr><td width=200px>Agent</td><td width=200px>Stance</td></tr></thead>
+    {% for pos in positions %}
+      <tr><td>{% if pos.agent.direct %}<a href="/char/{{ pos.agent.controller.username }}">{{ pos.agent.name }}</a>{% else %}{{ pos.agent.name }} {% endif %}</td><td>{{ pos.tstate }}</td></tr>
+    {% endfor %}
+     </table>
+    {% else %}
+    Apparently nobody has opinions on this yet! 
+    {% endif %}
+  </div>
+  
+  {% if subject.factor_set.all %}
+  Here are other factors that might be contributing:
+  <div class="pspeople">
+  <table class="sortable" width=100%>
+      <thead><tr><td width=200px>Factor</td><td width=200px>Effect</td></tr></thead>
+    {% for factor in subject.factor_set.all %}
+      <tr><td>{{ factor.name }}</td>
+      <td>{% if factor.positive %}
+	Positive
+	{% else %}
+	Negative
+	{% endif %}
+      </tr>
+    {% endfor %}
+     </table>
+  </div>
+  {% endif %}
+  
+  
+</div>
+
+
+
+
+{% endblock %}

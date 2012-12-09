@@ -1,0 +1,44 @@
+{% extends "rbase.html" %}
+
+{% block rcont %}
+
+
+<div class="intro">There is no higher calling than the advancement of human knowledge.</div>
+
+<div class="largecontainer">
+<div class="contheading">Technology Data: {{ r.tech.name }}</div>
+
+<table  >
+<tr><td><b>Research State:</b></td><td>{{ r.txtstate }}
+{% if r.complete %}<a href="/research/{{ r.tech.startCode }}/{{ r.state }}">(View Research Steps)</a>{% else %} &mdash; <a href="/research/{{ r.tech.startCode }}/{{ r.state }}">Continue Research</a>
+{% endif %}
+
+</td></tr>
+<tr><td><b>Start Code:</b></td><td><span class="code">{{ r.tech.startCode }}</span></td></tr>
+{% if r.complete %}
+<tr><td><b>Finish Code:</b></td><td><span class="code">{{ r.tech.finishCode }}</span></td></tr>
+{% endif %}
+<tr><td><b>Published By:</b></td><td>{% if r.tech.is_published %}{{ r.tech.publishedBy.clink|safe }}{% else %}Nobody! 
+{% if r.complete %}
+<i>An opportunity to advance in your field, Doctor -- why not <a href="/research/publish/{{ r.tech.startCode }}">publish</a>?</i>{% endif %}{% endif %}</td></tr>
+<tr><td><b>Prerequisites:</b></td><td>
+{% if r.tech.has_prereqs %}
+{% for pt in r.tech.prereqs.all %}
+<div class="prereq"><a href="/research/{{ pt.startCode }}">{{ pt.name }}</a></div>
+{% endfor %}
+{% else %}
+</i>None - it's intuitively obvious!</i>
+{% endif %}
+</td></tr>
+{% if children %}
+<tr><td><b>Techs Unlocked</b></td><td>
+{% for c in children %}
+<div><span class="code">{{ c.startCode }}</span> -- {{ c.name }}</div>
+{% endfor %}
+</tr>
+{% endif %}
+</table>
+</div>
+
+
+{% endblock %}

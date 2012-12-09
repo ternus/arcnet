@@ -1,0 +1,38 @@
+{% extends "rbase.html" %}
+
+{% block rcont %}
+
+<div class="intro">Welcome, Doctor.  What would you like to research today?</div>
+
+
+<div class="largecontainer">
+  <div class="contheading">View Tech Trees</div>
+  <div><a href="/research/tree/T">Cybertech</a></div>
+  <div><a href="/research/tree/P">Physics</a></div>
+  <div><a href="/research/tree/G">Genetics</a></div>
+  <div><a href="/research/tree/D">Neuroscience</a></div>
+  <div><a href="/research/tree/Z">Zed</a></div>
+</div>
+
+<div class="largecontainer">
+<div class="contheading">Published Research</div>
+<div class="conttext">Total Levels of Published Research: {{ tlevel }}</div>
+{% if published %}
+<table width=100% class="sortable">
+<thead><tr><td width="60px" >Code</td><td width=30px  align="center">Lvl</td><td>Name</td><td>State</td><td>Publisher</td></tr></thead>
+{% for r in published %}
+<tr class="border">
+<td ><span class="code">{{ r.tech.startCode }}</span></td>
+<td >{{ r.tech.difficultyLevel }}</td><td><a href="/research/{{ r.tech.startCode }}">{{ r.tech.name }}</a></td><td sorttable_customkey={{ r.state }}>{{ r.txtstate }}</td>
+<td>{{ r.tech.publishedBy.clink|safe }}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+None yet!
+{% endif %}
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "index.html" %}
+
+
+{% block head_content %}
+
+<script type="text/javascript" src="http://b5.mit.edu/js/audio-player.js"></script>  
+<script type="text/javascript">  
+               AudioPlayer.setup("http://b5.mit.edu/js/player.swf", {  
+                   width: 500,  
+               });  
+</script>
+
+{% endblock %}
+
+{% block heading %}Read Media Feed Post{% endblock %}
+
+{% block title %}Read Media Feed Post{% endblock %}
+
+{% block content %}
+
+<div class="nav-header"><a href="/media/">Back</a></div>
+
+<div class="largecontainer" style="padding:8px;">
+  <div id="author"><a href="/char/{{ post.author.username }}">{{ post.author }}</a> posted {{ post.timesince }} ago:</div>
+  <div id="subject">{{ post.subject }}</div>
+
+  <hr />
+
+  <div class="conttext">
+  {% if post.istext %}
+
+  {{ post.text|safe|linebreaks }}
+
+  {% endif %}
+  {% if post.isimage %}
+
+
+<img src="{{ post.image.url }}" width=700px/></div>
+
+  {% endif %}
+  {% if post.isaudio %}
+
+    <p id="audioplayer_{{post.id}}">Alternative content</p>  
+  <script type="text/javascript">  
+    AudioPlayer.embed("audioplayer_{{post.id}}", 
+    {
+    soundFile: "{{ post.audio.url }}",
+    titles:"{{ post.subject }}",
+    artists:"{{ post.author.charname }}",
+    animation:"no",
+    width:500,
+    });  
+  </script>
+
+  <div>[<a href="{{post.audio.url}}">MP3 Download</a>]</div>
+  {% endif %}
+
+</div>
+  {% if post.characters %}
+  <div class="conttext">
+    <b>Characters in this post:</b>
+    <ul>
+    {% for character in post.characters.all %}
+    <li> {{character.chardiv|safe}}</li>
+    {% endfor %}
+    </ul>
+  </div>
+  
+  {% endif %}
+  
+
+</div>
+
+
+
+
+{% endblock %}

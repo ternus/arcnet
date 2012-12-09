@@ -1,0 +1,45 @@
+{% extends "rbase.html" %}
+
+{% block rcont %}
+
+<div class="intro">Welcome, Doctor.  What would you like to research today?</div>
+
+<div class="largecontainer">
+<div class="contheading">Research In Progress</div>
+{% if started %}
+<table width=100% class="sortable">
+<thead><tr><td width="60px" >Code</td><td width=30px >Lvl</td><td>Name</td><td >Step</td><td> </td></tr></thead>
+{% for r in started %}
+<tr>
+<td align="center"><span class="code">{{ r.tech.startCode }}</span></td>
+<td>{{ r.tech.difficultyLevel }}</td>
+<td><a href="/research/{{ r.tech.startCode }}">{{ r.tech.name }}</a></td>
+<td sorttable_customkey={{ r.state }}>{{ r.txtstate }}</td>
+<td>{% if r.complete %}{% else %}<a href="/research/{{ r.tech.startCode }}/{{ r.state }}">Continue Research</a>{% endif %}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+None at the moment.
+{% endif %}
+</div>
+
+<div class="largecontainer">
+<div class="contheading">Completed Research</div>
+{% if done %}
+<table width=100% class="sortable">
+<thead><tr><td width="60px" >Code</td><td width=30px  align="center">Lvl</td><td>Name</td><td>State</td><td>Publisher</td></tr></thead>
+{% for r in done %}
+<tr class="border">
+<td ><span class="code">{{ r.tech.startCode }}</span></td>
+<td >{{ r.tech.difficultyLevel }}</td><td><a href="/research/{{ r.tech.startCode }}">{{ r.tech.name }}</a></td><td sorttable_customkey={{ r.state }}>{{ r.txtstate }}</td>
+<td>{% if r.complete %}{% else %}<a href="/research/{{ r.tech.startCode }}/{{ r.state }}">Continue Research</a>
+{% endif %}</td></tr>
+{% endfor %}
+</table>
+{% else %}
+None yet!
+{% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "rbase.html" %}
+
+{% block rcont %}
+
+<div class="intro">Theorize.  Postulate.  Conjecture.</div>
+
+<div class="cencontainer">
+<div class="contheading">Theorize</div>
+<div class="intro">You may only use this interface if you have the Scientific Research ability.  Each use of this interface counts as one use of that ability.</div>
+<div class="conttext">This interface allows you to translate tech names into start codes. Be sure to enter the name exactly.</div>
+
+<form action="." method="GET">
+ <label for="tech">Tech Name:</label>
+    <input type="text" name="tech" value="">
+    <input type="submit" value="Theorize!">
+</form>
+
+{% if tech %}
+<div class="conttext">Success!  The code for {{ tech.name }} is: <span class="code">{{ tech.startCode }}</span></div>
+{% endif %}
+
+</div>
+
+{% endblock %}

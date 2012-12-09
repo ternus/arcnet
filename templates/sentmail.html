@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+
+{% block heading %}A-Mail{% endblock %}
+
+{% block title %}Read A-Mail{% endblock %}
+
+{% block content %}
+
+<div class="nav-header">
+<a href="/mail/">My Inbox</a> | <a href="/mail/sent/">My Outbox</a> | <a href="/mail/send/">Send A-Mail</a>
+</div>
+
+
+
+<div class="largecontainer">
+<div class="contheading">Sent Mail</div>
+<table width=100% class="sortable">
+<thead>
+<tr><td><b>Date</b></td><td><b>From</b></td><td><b>To</b></td><td><b>Subject</b></td></tr>
+</thead>
+{% for mail in sentmail %}
+<tr><td sorttable_customkey={{mail.isoformat}}>{{ mail.timesince }}</td><td>{{ mail.sender }}</td><td>{{ mail.recipient }}</td><td><a href="/mail/read/{{ mail.id }}">{{ mail.subject }}</a></td></tr>
+{% endfor %}
+</table>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+
+{% block title %}Remote Login{% endblock %}
+
+{% block heading %}Remote Login: {{ c.address }}{% endblock %}
+
+{% block content %}
+
+
+ICE:<br />
+
+<table>
+{% for i in ice %}
+<tr>
+<td><font color="{{ i.get_level }}">{{ i.get_level }}</font></td>
+<td>{{ i.get_type }}</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,592 @@
+body {
+    font-family:  Helvetica, Verdana, Sans-serif;
+    font-size: 11pt;
+    background: url("http://b5.mit.edu/img/charcoal.png") #000000;
+    background-attachment: fixed;
+    color: #f5f5f5;
+//    overflow-y: scroll;
+
+}
+
+.hidden {
+    display: none;
+}
+
+#page-container {
+/*     margin-right: 50px; */
+/*     margin:auto; */
+/*     margin-left:auto; */
+/*     margin-right:auto; */
+/*     margin-top:15px; */
+/*     align: center; */
+/*     align:left; */
+/*     margin-left:15px; */
+/*     border: none; */
+    margin: 15px auto;
+    align:center;
+    max-width:1111px;
+}
+
+#subcontainer {
+    border: 1px solid #888888;
+    padding:0px;
+    margin-left:111px;
+//    margin-right:111px;
+    background: #e6e4da;
+    min-width: 670px;
+    max-width: 1000px;
+}    
+
+#messages {
+    text-align: center;
+    font-size: 14pt;
+    color: #c4c7cb;
+    font-weight: bold;
+//    font-variant: small-caps;
+    margin: auto;
+    border-bottom: 1px solid #888888;
+}
+
+#messages .info {
+    background: darkblue;
+}
+
+#messages .success {
+    background: darkgreen;
+}
+
+#messages .warning { 
+    background: orange;
+}
+
+#messages .error {
+    background: darkred;
+}
+
+#header {
+    text-align: center;
+    margin: auto;
+    
+    background: url("http://b5.mit.edu/img/cityflood.png") #c4c7cb;
+    padding: 13px 0px 12px 0px;
+}
+
+#content-header {
+    text-align: center;
+    font-size: 15pt;
+    font-weight: bold;
+    padding: 2px;
+    color: #222200;
+    background: #e6e4da;
+    border-bottom: 1px solid #bbb;
+}
+
+#content {
+    background: #e6e4da;
+    margin: auto;
+    text-align: justify;
+    font-size: 11pt;
+    color: #222200;
+    padding: 15px;
+}
+
+.intro {
+    text-align: center;
+    margin: auto;
+    font-style: italic;
+    width:600px;
+}
+
+/* *************** PROFILE ******************* */
+
+.chardiv { 
+    margin: 5px;
+}
+
+.chardiv img {
+    vertical-align: middle;
+}
+
+
+#char_profile {
+    width: 660px;
+    margin: auto;
+}
+
+
+#char_name {
+    font-size: 17pt;
+    font-weight: bold;
+    margin: 5px;
+    height: 35px;
+}
+
+#deceased {
+    font-size: 30pt;
+    text-transform: uppercase;
+    float: right;
+    font-weight: bold;
+    color: red;
+    padding-right: 10px;
+}
+
+#content #char_profile #leftcontainer {
+    float: left;
+    margin: 5px;
+}
+
+
+#content #char_profile #public_info {
+    margin:5px;
+    padding:5px;
+    background: #d7d3da;
+    border: 1px solid gray;
+
+}
+
+#content #char_profile #private_info {
+   padding:5px;
+   margin: 5px;
+   background: #d7d3da;
+   border: 1px dashed gray;
+
+}
+
+#content #char_profile #rightcontainer {
+    float: left;
+    width: 380px;
+
+
+}
+
+
+#content #char_profile #player_info {
+    width: 245px;
+    padding:5px;
+    background: #d7d3da;
+    text-align: left;
+    color: #333333;
+    font-size:10pt;
+    border: 1px dotted gray;
+}
+
+#content #char_profile #player_image {
+    border: 1px solid gray;
+    background: #d7d3da;
+    padding: 5px;
+    width: 245px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+
+#content a {
+    text-decoration: none;
+    color: darkblue;
+}
+
+#content a:hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+.nav-header {
+    font-size: 10pt;
+    text-align:center;
+    margin: auto;
+    padding: 3px;
+    border: 1px gray;
+}
+
+.subcontent-header {
+    padding: 3px;
+    font-weight:bold;
+}
+
+
+
+/* ************** MAIL ************ */
+
+
+.largecontainer {
+    border: 1px solid black;
+    padding: 5px 8px;
+    font-size: 12pt;
+    margin: 10px auto;
+    min-width:400px;
+    max-width:80%;
+    background: #d7d3da;
+}
+.mail h3 {
+    text-align:center;
+}
+
+
+.largecontainer .mail-header {
+    background: #a7a3aa;
+    margin: 5px 1px;
+}
+
+.largecontainer .mail-text {
+    font-family: Monospace;
+}
+
+
+/* ************** MEDIA *********** */
+
+#media {
+    width: 99%;
+    border-right: 7px dotted black;
+    border-left: 7px dotted black;
+}
+
+#post {
+
+    width: 600px;
+    margin: 8px auto 8px auto;
+    padding:8px;
+    background: #d7d3da;
+    border: 1px solid gray;
+}
+
+#subject {
+    font-size: 13pt;
+}
+
+.expander a{
+    cursor: pointer;
+    color: #444488;
+    font-style:italic;
+    text-decoration:none;
+}
+
+.expander a:hover {
+    color: #888844;
+}
+
+
+#post .text {
+    display: none;
+}
+
+#famelist {
+    font-size: 13pt;
+}
+
+
+.cencontainer {
+    width: 600px;
+    margin: 8px auto 8px auto;
+    padding:5px;
+    background: #d7d3da;
+    border: 1px solid gray;
+}
+
+.contheading {
+    font-size: 16pt;
+    font-weight: bold;
+    padding: 2px;
+    text-align: center;
+    border-bottom: 1px dotted gray;
+}
+
+.conttext {
+    padding: 8px 0px;
+}
+
+/* ************** POP SUPPORT ********** */
+
+.pssubject {
+    padding: 5px;
+    text-align: center;
+}
+
+.pssubject-name {
+    font-weight: bold;
+    font-size: 13.5pt;
+}
+
+.pssubject-support {
+
+}
+
+.pssubject-explan {
+
+}
+
+.pspeople {
+    margin: 3px;
+    padding: 3px;
+    border: 1px dotted gray;
+}
+.psperson {
+    margin: 3px;
+}
+/* ************* CYBER ************* */
+
+
+
+.ice {
+    text-align: center;
+    font-size: 15px;
+    border:1px solid black;
+    min-width:100px;
+    max-width:50%;
+    margin:auto;
+}
+
+.icelayer_current {
+    border: 1px dashed green;
+    background:darkgray;
+    text-align:center;
+    min-width:100px;
+    max-width:50%;
+    margin:auto;
+}
+
+.ice-element {
+    text-align: center;
+    margin:auto;
+    padding: 10px;
+}
+
+.ice-help {
+    text-align: left;
+    padding: 5px;
+    font-size: 10pt;
+}
+
+.iceid {
+    font-size: 8pt;
+    font-family: Monospace;
+}
+
+
+.icelayer {
+    border: 1px solid #f44;
+}
+
+.icelayer_broken {
+    font-style: italic;
+    border: 1px dotted #4f4;
+}
+
+
+#ice-level-White {
+    padding: 2px;
+    background: white;
+}
+
+#ice-level-Green {
+    padding: 2px;
+    background: #6b6;
+}
+
+#ice-level-Blue {
+    padding: 2px;
+    background: lightblue;
+}
+
+#ice-level-Yellow {
+    padding: 2px;
+    background: #ffffaa;
+}
+
+#ice-level-Orange {
+    background: orange;
+}
+
+#ice-level-Red {
+    padding:2px;
+    color:white;
+    background: red;
+}
+
+#ice-level-Black {
+    padding:2px;
+    background: #000;
+    color: white;
+}
+
+#ice-level-Diamond {
+    padding:2px;
+	 background: url("http://b5.mit.edu/img/lgrey091.gif");
+	 color: black;
+}
+
+#programs { 
+    border: 1px solid black;
+    font-size: 13px;
+}
+
+table.sortable thead {
+
+    background: #b7b3ba;
+    font-weight:bold;
+    cursor: pointer;
+    cell-padding: 6px;
+}
+
+table.sortable td {
+    text-align: center;
+    border-bottom: 1px dotted black;
+}
+
+table.sortable tr {
+    border: 0px;
+}
+
+
+#program {
+    padding: 3px;
+    border-bottom: 1px solid black;
+
+}
+
+.binary {
+    font-family: Monospace;
+
+}
+
+.progname {
+    text-align: center;
+}
+.progdesc {
+
+}
+
+
+.comptext {
+    font-family: Monospace;
+    width: 500px;
+    padding: 8px;
+    border: 1px solid gray;
+    margin: auto;
+}
+
+/* RANDOM STUFF */
+
+#sidebar-img {
+    float:left;
+    padding:0px;
+    margin:11px 5px 0px 5px;
+    text-align:center;
+    width:100px;
+    height:100px;
+}
+
+#sidebar {
+    clear:both;
+    float: left;
+    padding: 5px;
+    margin-right:0px;
+    margin-left:0px;
+    margin-top: -10px;
+    width: 100px;
+    background: #324856;
+    font-size: 11pt;
+    text-align: right;
+    color: #c4c7cb;
+    border: 1px solid #888888;
+}
+
+#sidebar a {
+    text-decoration: none;
+    color: #ffffaa;
+}
+
+#sidebar a:hover {
+    color: #c4c7cb;
+}
+
+.sbe {
+    padding: 2px 0px 2px 0px;
+}
+.sbeline {
+    border: 1px solid #888888;
+    margin: 2px 0px;
+}
+
+.sbe-mail {
+    color: gray;
+    font-weight: bold;
+}
+
+.sbe-mail-new {
+    color: red;
+    font-weight: bold;
+}
+
+
+#footer {
+    font-size: 10px;
+    background: #000000;
+
+    line-height: 18px;
+    text-align: right;
+    font-weight:bold;
+    clear: both;
+}
+
+#footer a {
+    color: #c9c9c9;
+    text-decoration: none;
+}
+
+#footer a:hover {
+    color: #db6d16;
+}
+
+#footer #altnav {
+    float: left;
+    text-align: left;
+}
+
+
+.email {
+    font-family: Monospace;
+    font-weight: bold;
+}
+
+.code {
+    font-family: Monospace;
+    
+}
+
+.ltext {
+    font-family: Monospace;
+    font-size: 15pt;
+    font-weight: bold;
+}
+
+
+/* ************* PROGRESS BAR **************** */
+
+.progressBar{
+	width:400px;
+	height:41px;
+	background:url("http://b5.mit.edu/img/bg_bar.png") no-repeat 0 0;
+	position:relative;
+	margin: auto;
+}
+.progressBar span{
+	position:absolute;
+	display:block;
+	width:385px;
+	height:25px;
+	background:url("http://b5.mit.edu/img/greenbar.png") no-repeat 0 0;
+	top:8px;
+	left:8px;
+	overflow:hidden;
+	text-indent:-8000px;
+}
+.progressBar em{
+	position:absolute;
+	display:block;
+	width:385px;
+	height:25px;
+	background:url("http://b5.mit.edu/img/redbar.png") repeat-x 0 0;
+	top:0;
+}
+
+

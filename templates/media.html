@@ -1,0 +1,73 @@
+{% extends "index.html" %}
+
+{% load webdesign %}
+
+{% block head_content %}
+
+<script type="text/javascript" src="http://b5.mit.edu/js/audio-player.js"></script>  
+<script type="text/javascript">  
+               AudioPlayer.setup("http://b5.mit.edu/js/player.swf", {  
+                   width: 500,  
+               });  
+</script>
+
+{% endblock %}
+
+{% block heading %}ARCNET Media Feed{% endblock %}
+
+{% block title %}Media Feed{% endblock %}
+
+{% block content %}
+
+<div class="nav-header">
+  <a href="/media/post/text">Make Text Post</a> | 
+  <a href="/media/post/image">Make Image Post</a> |
+  <a href="/media/all/">View All Media Feed Posts</a>
+</div>
+
+<div id="media">
+{% for post in media %}
+<div id="post">
+  <div id="author"><img {{post.author.tinypic|safe }} /><a href="/char/{{ post.author.username }}">{{ post.author }}</a> posted {{ post.timesince }} ago:</div>
+  <div id="subject"><a href="/media/{{ post.id }}">{{ post.subject }}</a></div>
+
+  {% if post.istext %}
+
+  <div id="firstline" class="expander"><a onClick="shoh('text{{ post.id }}');">{{ post.firstline }}...
+  <img src="http://b5.mit.edu/img/u.gif" name="imgtext{{ post.id }}" width=9 height=9 /></a></div>
+  <div id="text{{ post.id }}" class="text" style="display:none;">  
+    <hr />
+    {{ post.text|safe|linebreaks }}</div>
+
+  {% endif %}
+  {% if post.isimage %}
+
+  <div id="firstline" class="expander">{% if post.notable %}[Notable]{% endif %}<a onClick="shoh('text{{ post.id }}');">Click to view photo...
+  <img src="http://b5.mit.edu/img/u.gif" name="imgtext{{ post.id }}" width=9 height=9 /></a></div>
+  <div id="text{{ post.id }}" class="text" style="display:none;">  
+    <hr />
+    <img src="{{ post.image.url }}" width=500px/></div>
+
+  {% endif %}
+  {% if post.isaudio %}
+
+    <p id="audioplayer_{{post.id}}">[You don't have Flash installed, or something else is wrong.]</p>  
+  <script type="text/javascript">  
+    AudioPlayer.embed("audioplayer_{{post.id}}", 
+    {
+    soundFile: "{{ post.audio.url }}",
+    titles:"{{ post.subject }}",
+    artists:"{{ post.author.charname }}",
+    animation:"no",
+    width:500,
+    });  
+  </script>
+
+ 
+  {% endif %}
+
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Runs a Python script in Django environment
+
+THISFILE=$(readlink -nf "$0")
+BINDIR=$(dirname "$THISFILE")
+STATUSDIR=$(dirname "$BINDIR")
+
+# Meh. This works... there's probably a less hacky way to manage it.
+env DJANGO_SETTINGS_MODULE="settings" \
+    PYTHONPATH="$STATUSDIR${PYTHONPATH:+:}$PYTHONPATH" \
+    PYTHONPATH="$BINDIR${PYTHONPATH:+:}$PYTHONPATH" \
+    python "$@"

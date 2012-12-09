@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+
+{% block heading %}Profile: {{ char.charname }}{% endblock %}
+
+{% block title %}Character Profile: {{char.charname}}{% endblock %}
+
+{% block content %}
+
+<div id="char_profile">
+  Name: {{ char.charname }}<br />
+  Gender: {{ char.gender }}<br />
+  Birth Date: {{ char.dob }}<br />
+  Status: {{ char.status }}
+  <hr />
+  <i>Character Type</i>: {{ char.type }}<br />
+  {% if char.isPC %}
+  <i>Player Name</i>: {{ char.first_name }} {{ char.last_name }}<br />
+  <i>Player Email</i>:<span class="email"> {{ char.email }} </span><br />
+  <i>Player Phone</i>: {{ char.phone }}<br />
+  {% endif %}
+</div>
+
+{% endblock %}

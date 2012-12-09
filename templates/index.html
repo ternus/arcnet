@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <!-- Christian Ternus
+       ternus@mit.edu
+       for ARCADIA RISING -->
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="en-us" />
+
+    <title>ARCNET :: {% block title %}{% endblock %}</title>
+
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    
+    <meta name="description" content="Description" />
+    <meta name="keywords" content="Keywords" />
+    <meta name="author" content="Christian Ternus" />
+
+    <style type="text/css" media="all">@import "http://b5.mit.edu/css/master.css";</style>
+
+    <!-- <script type="text/javascript" src="http://b5.mit.edu/js/jquery-1.2.6.min.js"></script>-->
+    <script type="text/javascript" src="http://b5.mit.edu/js/collapse-expand.js"></script>
+    <script type="text/javascript" src="http://b5.mit.edu/js/sorttable.js"></script>
+
+    {% block head_content %}<!-- No block media -->{% endblock %}
+
+    {% if trance %}
+
+    <script type="text/javascript" src="http://b5.mit.edu/js/highslide/highslide-with-gallery.js"></script>
+    <script type="text/javascript" src="http://b5.mit.edu/js/highslide/highslide.config.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      hs.addEventListener(window, "load", function() {
+      hs.expand(null, {
+      src: 'http://b5.mit.edu/img/trance.png',
+      headingText: '{{ trance.heading }}',
+      captionText: '{{ trance.caption }}',
+      });
+      });
+    </script>
+    <style type="text/css" media="all">@import "http://b5.mit.edu/css/trance.css"; </style>
+
+    {% endif %}
+    
+  </head>
+  <body>
+    <div id="page-container">
+      <div id="sidebar-img">
+	{% if user.is_authenticated %}
+	<img src="http://b5.mit.edu/img/arcadia3.png" />
+	{% endif %}
+
+	</div>
+      <div id="sidebar">
+
+	{% if user.is_authenticated %}
+        <div class="sbe"><a href="/char/"><b>{{ user.charname }}</b></a></div>
+	<div class="sbe"><a href="/log/">Personal Log</a></div>
+	<!--<div class="sbeline"></div>
+	<div class="sbe"><a href="/">Home</a></div> -->
+	{% if user.is_superuser %}
+	<div class="sbe"><a href="/admin/">Data Admin</a></div>
+	{% endif %}
+	<div class="sbeline"></div>
+	<div class="sbe"><a href="/">All Events</a> <!-- <span class="sbe-mail{% if user.has_new_events %}-new{% endif %}">{{ user.new_feeds }}</span>--></div>
+	<div class="sbe"><a href="/mail/">A-Mail</a> <span class="sbe-mail{% if user.has_new_mail %}-new{% endif %}">{{ user.new_mail }}</span></div>
+	<div class="sbe"><a href="/net/computrons/">Computrons</a> <b>{{ user.computrons }}</b></div>
+	<div class="sbeline"></div>
+	<div class="sbe"><a href="/char/browse/">Profile Browser</a></div>
+	<div class="sbe"><a href="/media/">Media Feed</a></div>
+	<div class="sbe"><a href="/opinion/">Public Opinion</a></div>
+	<div class="sbe"><a href="/fame/">C.A. Rankings</a></div>
+	<div class="sbeline"></div>
+	{% if user.hacker %}
+	<div class="sbe"><a href="/net/">Network</a></div>
+	{% endif %}
+	<div class="sbe"><a href="/research/">Research</a></div>
+	<div class="sbe"><a href="/arkipedia/">Arkipedia</a></div>
+	<div class="sbe"><a href="/rumors/">Rumor Mill</a></div>
+	<div class="sbeline"></div>
+	<div class="sbe"><a href="/logout/">Logout</a></div>
+	{% else %}
+	<div class="sbe"><a href="/login/">Login</a></div>
+	{% endif %}
+      </div>
+      <div id="subcontainer">
+	<div id="header"><img id="headerimg" src="http://b5.mit.edu/img/arcadia-logo.png" />
+	</div>
+	<div id="messages">
+	  {% if messages %}
+	  {% for message in messages %}
+	  <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+	  {% endfor %}
+	  {% endif %}
+	</div>
+	  <div id="content-header">
+	    {% block heading %}ARCNET{% endblock %}
+	  </div>
+
+	<div id="content">
+	  {% block content %}{% endblock %}
+	</div>
+	<div id="footer">
+	  Arcadia Rising Game Environment -- <a href="http://cternus.net">ternus</a>
+	</div>
+      </div>
+      <div id="magic-spacer">
+	&nbsp;
+      </div>
+    </div>
+  </body>
+</html>

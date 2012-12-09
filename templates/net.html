@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+
+{% block title %}ARCNET{% endblock %}
+
+{% block heading %}Welcome to the ARCNET Network{% endblock %}
+
+{% block content %}
+
+<div class="cencontainer">
+  <div class="contheading">Access IP</div>
+  <div class="intro">Initiating connection.</div>
+  <div class="conttext" align="center">
+    <form action="/net/" method="GET">
+      <span class="code">&gt; <input type="text" name="address" value="000:000:000" /> <input type="submit" value="CONNECT" /></span>
+    </form>
+  </div>
+</div>
+<div class="cencontainer">
+  <div class="contheading">Known Computers</div>
+  <table width=100% class="sortable">
+    <thead><tr><td>Address</td><td>Name</td><td>Security</td></tr></thead>
+    {% for c in user.computers.all %}
+    <tr><td><a href="/net/{{ c.address }}/">{{ c.address }}</a></td><td>{{ c.name }}</td><td>{{ c.slevel }}</td></tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock %}

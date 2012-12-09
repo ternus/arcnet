@@ -1,0 +1,21 @@
+{% extends "rbase.html" %}
+
+{% block rcont %}
+
+<div class="intro">A hypothesis, or an educated guess?</div>
+
+<div class="cencontainer">
+<div class="contheading">Publish Tech</div>
+<div class="conttext">You are about to publish tech {{ tech.name }}.
+This will grant you and the Science Council income, and make the
+research available to anyone to use in future efforts.</div>
+
+<div class="conttext">If you are sure you wish to do this, click:</div>
+
+<form action="/research/publish/{{ tech.startCode }}" method="POST">
+    <input type="submit" name="publish" value="Publish">
+</form>
+
+</div>
+
+{% endblock %}

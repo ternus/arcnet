@@ -1,0 +1,119 @@
+{% extends "rbase.html" %}
+
+{% block rcont %}
+
+<div class="intro">Here's where the science happens.</div>
+
+<div class="largecontainer">
+{% ifequal state 1 %} 
+<div class="contheading">Step {{ state }}: Hypothesis</div>
+
+You are about to begin research on {{ r.tech.name }}.
+
+{% if further %}
+<div class="conttext"><a href="/research/{{r.tech.startCode }}/{{ next }}">Next Step</a></div>
+{% else %}
+<form action="/research/{{ r.tech.startCode }}/{{r.state}}" method="POST">
+<input type="submit" value="Proceed to Design"/>
+</form>
+{% endif %}
+{% endifequal %}
+
+{% ifequal state 2 %} 
+<div class="contheading">Step {{ state }}: Design</div>
+{% if r.state %}
+<div class="intro"><a href="/research/{{ r.tech.startCode }}/{{ prev }}">Previous Step</a> (for reference)</div>
+{% endif %}
+
+{% if r.tech.is_published %}<div class="intro"><b>This tech has been Published.  You may freely skip this step.</b></div>{% endif %}
+
+<div class="intro">This is a Design step.  You must do the following:</div>
+
+{{ r.tech.design|linebreaks }}
+
+{% if further %}
+<div class="conttext"><a href="/research/{{r.tech.startCode }}/{{ next }}">Next Step</a></div>
+{% else %}
+<form action="/research/{{ r.tech.startCode }}/{{r.state}}" method="POST">
+<input type="submit" value="Design Complete"/>
+</form>
+{% endif %}
+{% endifequal %}
+
+{% ifequal state 3 %} 
+<div class="contheading">Step {{ state }}: Experiment</div>
+{% if r.state %}
+<div class="intro"><a href="/research/{{ r.tech.startCode }}/{{ prev }}">Previous Step</a> (for reference)</div>
+{% endif %}
+
+<div class="intro">This is an Experiment step.  You must do the following:</div>
+
+
+{{ r.tech.experiment|linebreaks }}
+
+{% if further %}
+<div class="conttext"><a href="/research/{{r.tech.startCode }}/{{ next }}">Next Step</a></div>
+{% else %}
+<form action="/research/{{ r.tech.startCode }}/{{r.state}}" method="POST">
+<input type="submit" value="Experiment Complete"/>
+</form>
+{% endif %}
+{% endifequal %}
+
+{% ifequal state 4 %} 
+<div class="contheading">Step {{ state }}: Analysis</div>
+{% if r.state %}
+<div class="intro"><a href="/research/{{ r.tech.startCode }}/{{ prev }}">Previous Step</a> (for reference)</div>
+{% endif %}
+
+<div class="conttext">You must now spend {{ r.tech.cost }} computrons.</div>
+
+{% if further %}
+<div class="conttext"><a href="/research/{{r.tech.startCode }}/{{ next }}">Next Step</a></div>
+{% else %}
+{% if can %}
+You have {{ user.computrons }} computrons remaining.  To spend {{ r.tech.cost }} computrons, click
+<form action="/research/{{ r.tech.startCode }}/{{r.state}}" method="POST">
+<input type="submit" value="Perform Analysis"/>
+{% else %}
+<div class="conttext">(You can't do this right now.)</div>
+{% endif %}
+<a href="/research/{{ r.tech.startCode }}">Back to Tech Page</a>
+</form>
+{% endif %}
+{% endifequal %}
+
+{% if done %} 
+<div class="contheading">Step {{ state }}: Conclusion</div>
+<div class="intro"><a href="/research/{{ r.tech.startCode }}/{{ prev }}">Previous Step</a> (for reference)</div>
+
+<div class="conttext">Your research is complete!  Your final research code
+is <span class="code">{{ r.tech.finishCode }}</span>. Congratulations!</div>
+
+{% if r.tech.is_published %}
+<div class="conttext">This tech has already been published.</div>
+{% else %}
+<div class="conttext">An opportunity to advance in your field, Doctor -- why not <a href="/research/publish/{{ r.tech.startCode }}">publish</a>?</div>
+{% endif %}
+
+
+<div class="conttext">This research feeds into the following techs:</div>
+
+<div class="conttext">
+{% for c in children %}
+<div><span class="code">{{ c.startCode }}</span> -- {{ c.name }}</div>
+{% endfor %}
+</div>
+
+<div class="rlink"><a href="/research/{{ r.tech.startCode }}">Back to this Tech</a></div>
+<div class="rlink"><a href="/research/{{ r.tech.startCode }}">Back to Research</a></div>
+
+</form>
+{% endif %}
+
+
+
+</div>
+
+
+{% endblock %}

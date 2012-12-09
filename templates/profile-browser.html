@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+
+{% block pagetitle %}Profile Browser{% endblock %}
+
+{% block title %}Profile Browser{% endblock %}
+
+{% block heading %}Profile Browser{% endblock %}
+
+{% block content %}
+
+<div class="largecontainer">
+<div class="contheading">Profiles</div>
+<table cellpadding=5 class="sortable" width=100%>
+<thead><tr><td></td><td>Name</td><td><i>Player</i></td></tr></thead>
+{% for char in characters %}
+<tr><td align="center"><img {{char.tinypic|safe}} /></td><td sorttable_customkey="{{char.last_name}}">{{char.clink|safe}} {% ifequal char.status "Deceased" %}[<font color="red">DECEASED</font>]{% endifequal %}</td><td>{{char.playername}}</tr>
+{% endfor %}
+</table>
+</div>
+
+
+{% endblock %}

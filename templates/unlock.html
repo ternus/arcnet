@@ -1,0 +1,28 @@
+{% extends "rbase.html" %}
+
+{% block rcont %}
+
+<div class="intro">A hypothesis, or an educated guess?</div>
+
+<div class="cencontainer">
+<div class="contheading">Formulate Hypothesis</div>
+<div style="padding:4px 0px;">If you have a code for a tech, enter it here.</div>
+
+<form action="." method="GET">
+ <label for="tech">Tech Start Code:</label>
+    <input type="text" name="tech" value="">
+    <input type="submit" value="Hypothesize!">
+</form>
+
+{% if ptechs %}
+<div class="conttext">That code maps to {{ tech.name }}, but you haven't unlocked the prerequisites.  The prerequisites are:</div>
+<ul>
+{% for tech in ptechs %}
+<li>{{ tech.name }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+</div>
+
+{% endblock %}
