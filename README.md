@@ -24,6 +24,8 @@ you need and leave the rest behind.
           There are a number of clever tricks here.
 * `elog/`: a unified event logging system, used to notify
           characters, the public, and the GMs when stuff happens.
+* `mail/`: a complete player-to-player mail system.  Supports
+          anonymous mail at the cost of computrons (a game currency).
 * `media/`: blog-style posting, uploading of video and audio,
 	   and the Public Opinion mechanic.
 * `pedia/`: the Arkipedia, a compilation of information about
