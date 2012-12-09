@@ -16,35 +16,27 @@ A breakdown of key directories and files follows.  The code is broken
 out into several Django apps, possibly allowing you to grab only what
 you need and leave the rest behind.
 
-	* `core/`: the central character model on which everything
-          else depends.  If you're reusing this code, you want this.
+* `core/`: the central character model on which everything else
+          depends.  If you're reusing this code, you want this.
           Includes code for character profiles.
-
-	* `cyber/`: the hacking mechanic, including ICE, the hacking
+* `cyber/`: the hacking mechanic, including ICE, the hacking
           obstacles: sudoku, word search, "Social Engineering," etc.
           There are a number of clever tricks here.
-
-	* `elog/`: a unified event logging system, used to notify
+* `elog/`: a unified event logging system, used to notify
           characters, the public, and the GMs when stuff happens.
-
-	* `media/`: blog-style posting, uploading of video and audio,
+* `media/`: blog-style posting, uploading of video and audio,
 	   and the Public Opinion mechanic.
-
-	* `pedia/`: the Arkipedia, a compilation of information about
+* `pedia/`: the Arkipedia, a compilation of information about
           the Arcadia station.  Might be useful for an in-game
-          reference.
-
-	* `research/`: the research mechanic, including ultra-spiffy
+	  reference.
+* `research/`: the research mechanic, including ultra-spiffy
           auto-generated research tree images, colorized for your
           pleasure.
-
-	* `templates/`: templates are not split out by app, so you'll
+* `templates/`: templates are not split out by app, so you'll
           need to pull the ones you want from here.  All the static
           images and so forth live in here.
-
-	* `settings.py`: the Django settings file
-
-	* `test.py`: the game database initialization code.  Check
+* `settings.py`: the Django settings file
+* `test.py`: the game database initialization code.  Check
           this to see what sorts of data we populated Arcadia with.
 
 This code was written using Django 0.96.  It probably needs some
