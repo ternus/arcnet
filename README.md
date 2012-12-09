@@ -26,8 +26,11 @@ you need and leave the rest behind.
           characters, the public, and the GMs when stuff happens.
 * `mail/`: a complete player-to-player mail system.  Supports
           anonymous mail at the cost of computrons (a game currency).
-* `media/`: blog-style posting, uploading of video and audio,
-	   and the Public Opinion mechanic.
+* `media/`: blog-style posting, uploading of video and audio, the
+	  Public Opinion mechanic (~voting).  Supports Facebook-style
+	  tagging of characters in posts, and bonuses to images that
+	  contain certain topics ("at least six weapons in the
+	  picture").  Characters can see what posts they're tagged in.
 * `pedia/`: the Arkipedia, a compilation of information about
           the Arcadia station.  Might be useful for an in-game
 	  reference.
