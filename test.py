@@ -15,10 +15,10 @@ from mail.models import *
 from pedia.models import *
 from research.models import *
 
-c = Character(username='gm', first_name="", last_name="GM",password='assbarn')
+c = Character(username='gm', first_name="", last_name="GM",password='passwrd')
 c.is_superuser = True
 c.is_staff = True
-c.set_password("assbarn")
+c.set_password("passwrd")
 f = open('profiles/alice.jpg', 'r')
 c.image = File(f)
 c.save()
@@ -28,8 +28,8 @@ c.gender="Indeterminate"
 c.race="?????"
 c.sector="Unknown"
 c.computron_income = 10
-c.phone = "617-710-8955"
-c.email = "arcadia-gms@mit.edu"
+c.phone = ""
+c.email = "arcadia-gms@mit.eduXXXCHANGEME"
 c.visible = False
 c.fame = 10
 c.save()
@@ -44,7 +44,7 @@ assert(u.is_active)
 g = c
 
 # c = Character(username='test', password='test')
-# #f = open('templates/netimg/profiles/bsena.jpg', 'r')
+# #f = open('templates/netimg/profiles/.jpg', 'r')
 # #c.image = File(f)
 # c.visible=False
 # c.save()
@@ -57,7 +57,9 @@ g = c
 # c.save()
 
 
-from char import chars
+#from char import chars
+
+chars = []
 
 for cd in chars:
     c = Character(username=cd, 
