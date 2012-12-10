@@ -12,9 +12,7 @@ from arcnet.settings import *
 from random import *
 from wordsearch import gen_wordsearch
 from hashlib import md5
-#from core.models import Character
 import core
-from container.models import *
 
 class Rumor(models.Model):
     subject = models.CharField(max_length="100")
@@ -45,87 +43,7 @@ class Picture(models.Model):
     class Meta:
         ordering = [ 'location' ]
 
-# class Riddle(models.Model):
-#     question = models.CharField(max_length=200)
-#     answer = models.CharField(max_length=100, help_text="All caps, all one word, LIKETHIS.")
-#     level = models.IntegerField(choices=DLEVEL_CHOICES,default=DLEVEL_EASY)
-    
-#     def __unicode__(self):
-#         return self.question
 
-#     class Meta:
-#         ordering = [ 'question' ]
-
-class CyberFile(models.Model):
-    # This is a horrible hack.
-    final_type = models.ForeignKey(ContentType,editable=False)
-    container = models.ManyToManyField(FileContainer)
-
-    def save(self, **kwargs):
-        if not self.pk:
-            self.final_type = ContentType.objects.get_for_model(self)
-        super(CyberFile, self).save(**kwargs)
-        
-    def c(self): 
-        return self.final_type.get_object_for_this_type(id=self.id) 
-
-    def __unicode__(self):
-        try:
-            return self.c().__unicode__()
-        except:
-            return "(unknown type)"
-
-    def magickey(self):
-        return md5(str(self)).hexdigest()
-
-    def verify_key(self, key):
-        return (key == self.magickey())
-
-    def get_type(self):
-        return self.c().get_type()
-
-
-# class CyberPackage(CyberFile):
-#     code = models.CharField(max_length=5, unique=True,default=gen_random_code)
-#     contents = models.ManyToManyField("CyberFile", symmetrical=False,related_name="cyber_payload_contents")
-    
-#     def __unicode__(self):
-#         return self.code
-
-#     def get_type(self):
-#         return "(binary package)"
-
-# class CyberProgram(CyberFile):
-#     bname = models.CharField(max_length=10,unique=True,help_text="Name of the 'binary'.")
-#     name = models.CharField(max_length=50)
-#     level = models.IntegerField(default=1)
-#     desc = models.TextField()
-
-#     def __unicode__(self):
-#         return self.name
-
-#     def get_type(self):
-#         return "(program)"
-
-# class CyberText(CyberFile):
-#     name = models.CharField(max_length=100)
-#     text = models.TextField()
-    
-#     def __unicode__(self):
-#         return self.name
-
-#     def get_type(self):
-#         return "(text)"
-
-# class CyberImage(CyberFile):
-#     name = models.CharField(max_length=100)
-#     image = models.ImageField(upload_to="netimg/")
-
-#     def __unicode__(self):
-#         return self.name
-
-#     def get_type(self):
-#         return "(image)"
 
 class Trance(models.Model):
     name = models.CharField(max_length=50)

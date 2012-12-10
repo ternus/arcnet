@@ -135,6 +135,5 @@ INSTALLED_APPS = (
     'arcnet.mail',
     'arcnet.media',
     'arcnet.cyber',
-    'arcnet.container',
     'arcnet.elog',
 )

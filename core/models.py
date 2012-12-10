@@ -6,7 +6,6 @@ from django.utils import timesince
 from defaults import *
 from cyber.defaults import *
 from cyber.models import *
-from container.models import *
 from research.models import *
 from research.defaults import *
 from elog.models import *
